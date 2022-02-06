@@ -1,11 +1,12 @@
 import type { BuilderContext, BuilderOutput } from '@angular-devkit/architect';
+import type { JsonObject } from '@angular-devkit/core';
 import type { BuilderOptions } from '../builder-options';
 import type { CircularDependency } from './circular-dependency';
 import { DependencyGraph } from './dependency-graph';
 
 export async function builderProgram(
-  { tsConfig, src }: BuilderOptions,
-  { workspaceRoot, target, logger }: BuilderContext
+  { tsConfig }: BuilderOptions,
+  { workspaceRoot, target, logger, getProjectMetadata }: BuilderContext
 ): Promise<BuilderOutput> {
   if (target === undefined) {
     logger.error('Target should be defined for dependencies validation.');
@@ -15,7 +16,10 @@ export async function builderProgram(
     };
   }
 
-  const graph: DependencyGraph = new DependencyGraph(`${workspaceRoot}/${src}`, {
+  const projectMetadata: JsonObject = await getProjectMetadata(target);
+  const projectRoot: string = getSourceRoot(projectMetadata);
+
+  const graph: DependencyGraph = new DependencyGraph(`${workspaceRoot}/${projectRoot}`, {
     fileExtensions: ['js', 'ts'],
     tsConfig: `${workspaceRoot}/${tsConfig}`,
   });
@@ -40,4 +44,17 @@ export async function builderProgram(
   return {
     success: false,
   };
+}
+
+function getSourceRoot(projectMetadata: JsonObject): string {
+  if (!hasSourceRoot(projectMetadata)) {
+    throw new Error('Source root not found.');
+  }
+
+  return projectMetadata.sourceRoot;
+}
+
+function hasSourceRoot(projectMetadata: JsonObject): projectMetadata is JsonObject & { sourceRoot: string } {
+  const sourceRootKey: string = 'sourceRoot';
+  return sourceRootKey in projectMetadata && typeof projectMetadata[sourceRootKey] === 'string';
 }
