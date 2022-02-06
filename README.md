@@ -1,6 +1,9 @@
 <p align="center">
   <img width="128px" src="assets/logo.svg" />
 </p>
+<p align="center">
+  <img src="actions/workflows/check-sources.yaml/badge.svg" />
+</p>
 
 # Multi-purpose CLI Builders for Angular
 
