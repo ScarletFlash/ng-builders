@@ -9,6 +9,7 @@
     "@angular-devkit/core": "^13.0.0"
   },
   "devDependencies": {
+    "@npm/types": "1.0.1",
     "@types/madge": "^5.0.0",
     "@types/node": "^16.0.0",
     "esbuild": "^0.14.0",
