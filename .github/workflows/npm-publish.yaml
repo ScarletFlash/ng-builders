@@ -60,8 +60,7 @@ jobs:
       - name: 'Update package version'
         run: |
           cd ./dist
-          npm version "${{ github.ref }}"
+          npm version "${{ github.event.release.tag_name }}"
           cd ..
       - name: 'Publish bundle to NPM'
-        # run: npm publish ./dist
-        run: ls -a ./dist && cat .npmrc && cat ./dist/package.json
+        run: npm publish ./dist
