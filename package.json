@@ -1,6 +1,6 @@
 {
   "name": "angular-builders",
-  "version": "0.0.0",
+  "version": "latest",
   "license": "SEE LICENSE IN LICENSE.md",
   "private": true,
   "author": {
@@ -34,7 +34,10 @@
   "scripts": {
     "build": "ts-node ./do-build.ts",
     "test": "npm run test:functional",
-    "test:functional": "ng run with-circular-dependencies:lint-circular-deps"
+    "test:functional": "ng run with-circular-dependencies:lint-circular-deps",
+    "prettier:check": "prettier --config ./.prettierrc --ignore-path ./.prettierignore --check ./**/*.{json,js,ts}",
+    "prettier:format": "prettier --loglevel log --config ./.prettierrc --ignore-path ./.prettierignore --write ./**/*.{json,js,ts}",
+    "cspell:check": "cspell lint './**/*.*' --config cspell.json"
   },
   "dependencies": {
     "@angular-devkit/architect": "~0.1300.0",
@@ -52,6 +55,7 @@
     "@npm/types": "1.0.1",
     "@types/madge": "^5.0.0",
     "@types/node": "^16.0.0",
+    "cspell": "^5.0.0",
     "esbuild": "^0.14.0",
     "madge": "^5.0.0",
     "prettier": "latest",

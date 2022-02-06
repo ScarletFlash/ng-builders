@@ -1,0 +1,9 @@
+{
+  "version": "0.2",
+  "language": "en",
+  "ignoreRegExpList": ["CStyleComment"],
+  "ignorePaths": ["**/node_modules/**", "**/dist/**", "**/assets/**"],
+  "dictionaries": ["en_us", "en-gb", "typescript", "node", "bash", "softwareTerms"],
+  "dictionaryDefinitions": [],
+  "words": ["esbuild", "pnpapi", "outdir", "Usakov", "prettierrc", "prettierignore", "loglevel"]
+}

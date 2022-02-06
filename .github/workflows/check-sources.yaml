@@ -1,0 +1,58 @@
+name: Check Sources
+
+on: [push, pull_request]
+
+jobs:
+  install:
+    runs-on: ubuntu-latest
+    name: Prepare node_modules
+    steps:
+      - uses: actions/checkout@v2
+      - uses: actions/cache@v2
+        with:
+          path: node_modules
+          key: ${{ runner.os }}-${{ hashFiles('package-lock.json') }}
+      - name: 'Install dependencies'
+        run: npm ci
+      - name: 'Pack prepared workspace files'
+        run: tar cf workspace.tar ./
+      - uses: actions/upload-artifact@v2
+        with:
+          name: workspace
+          path: workspace.tar
+
+  check-build:
+    needs: install
+    runs-on: ubuntu-latest
+    name: Check that build goes successful
+    steps:
+      - uses: actions/download-artifact@v2
+        with:
+          name: workspace
+      - name: 'Unpack prepared workspace files'
+        run: tar xf workspace.tar && rm -f workspace.tar
+      - run: npm run build
+
+  check-formatting:
+    needs: install
+    runs-on: ubuntu-latest
+    name: Check that code style matches defined rules
+    steps:
+      - uses: actions/download-artifact@v2
+        with:
+          name: workspace
+      - name: 'Unpack prepared workspace files'
+        run: tar xf workspace.tar && rm -f workspace.tar
+      - run: npm run prettier:check
+
+  check-spelling:
+    needs: install
+    runs-on: ubuntu-latest
+    name: Check that there are no spelling mistakes
+    steps:
+      - uses: actions/download-artifact@v2
+        with:
+          name: workspace
+      - name: 'Unpack prepared workspace files'
+        run: tar xf workspace.tar && rm -f workspace.tar
+      - run: npm run cspell:check
