@@ -26,7 +26,7 @@ You may use this Builder in your CI pipeline: it returns non-zero exit code if t
 
 ## Installation & Usage
 
-To use this builder, `angular-builders` package should be already installed. If not, follow steps,
+To use this builder, `angular-tools` package should be already installed. If not, follow steps,
 [described here](./../../README.md#installation--usage).
 
 Now, update your `angular.json` with the following:
@@ -39,7 +39,7 @@ Now, update your `angular.json` with the following:
     "my-very-best-angular-project": { // 👈 your project name
       "architect": {
         "lint-circular-deps": { // 👈 CLI command name
-          "builder": "angular-builders:circular-dependencies-linter", // 👈 required builder
+          "builder": "angular-tools:circular-dependencies-linter", // 👈 required builder
           "options": {
             "tsConfig": "./tsconfig.app.json"
           }
