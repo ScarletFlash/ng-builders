@@ -1,6 +1,36 @@
 {
-  "name": "@scarletflash/angular-builders",
+  "name": "angular-builders",
   "version": "0.0.0",
+  "license": "SEE LICENSE IN LICENSE.md",
+  "private": true,
+  "author": {
+    "email": "scarletflash.dev@gmail.com",
+    "name": "Fedor Usakov",
+    "url": "https://usakov.dev/"
+  },
+  "bugs": {
+    "email": "scarletflash.dev@gmail.com",
+    "url": "https://github.com/ScarletFlash/angular-builders/issues"
+  },
+  "description": "Multi-purpose CLI Builders for Angular",
+  "homepage": "https://github.com/ScarletFlash/angular-builders#readme",
+  "keywords": [
+    "Angular",
+    "Angular Builders",
+    "Angular Architect",
+    "Angular CLI",
+    "ng",
+    "lint",
+    "linter",
+    "dependencies",
+    "circular",
+    "circular dependencies"
+  ],
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/ScarletFlash/angular-builders.git"
+  },
+  "icon": "./assets/icon.png",
   "scripts": {
     "build": "ts-node ./do-build.ts",
     "test": "npm run test:functional",

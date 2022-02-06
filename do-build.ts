@@ -1,6 +1,6 @@
 import type { PackageJson } from '@npm/types';
 import { build } from 'esbuild';
-import { readFile, writeFile } from 'fs/promises';
+import { copyFile, mkdir, readFile, rm, writeFile } from 'fs/promises';
 import * as TypeScriptJsonSchema from 'typescript-json-schema';
 import type { BuilderSources } from './build-scripts/builder-sources.interface';
 import { getBuilderSources } from './build-scripts/get-builder-sources.script';
@@ -12,12 +12,15 @@ const descriptionByBuilderName: Map<string, string> = new Map<string, string>([
   ['circular-dependencies-linter', 'Linter for circular dependencies'],
 ]);
 
-getDirectories(`${__dirname}/packages`)
-  .then((builderSourceDirectories: string[]) => {
-    return Promise.all(
+const distPath: string = `${__dirname}/dist`;
+rm(distPath, { force: true, recursive: true })
+  .then(() => mkdir(distPath))
+  .then(() => getDirectories(`${__dirname}/packages`))
+  .then((builderSourceDirectories: string[]) =>
+    Promise.all(
       builderSourceDirectories.map(async (sourceDirectory: string) => await getBuilderSources(sourceDirectory))
-    );
-  })
+    )
+  )
   .then(async (builderSources: BuilderSources[]) => {
     builderSources.forEach(async (sources: BuilderSources) => {
       const { entryPointPath, name }: BuilderSources = sources;
@@ -85,7 +88,19 @@ async function generatePackageJson(): Promise<void> {
     `${__dirname}/package.json`,
     'utf-8'
   ).then((fileData: string) => JSON.parse(fileData));
-  const allowedFields: Set<PackageJsonKey> = new Set<PackageJsonKey>(['dependencies', 'name', 'version']);
+  const allowedFields: Set<PackageJsonKey> = new Set<PackageJsonKey>([
+    'dependencies',
+    'name',
+    'version',
+    'license',
+    'author',
+    'bugs',
+    'description',
+    'homepage',
+    'keywords',
+    'repository',
+    'icon',
+  ]);
 
   const sanitizedPackageJsonEntries = Object.entries(rootPackageJsonData).filter(([key, value]: [string, unknown]) => {
     const stringifiedValue: string = JSON.stringify(value);
@@ -98,4 +113,7 @@ async function generatePackageJson(): Promise<void> {
     ['builders', './builders.json'],
   ]);
   await writeFile(`${__dirname}/dist/package.json`, JSON.stringify(resultPackageJsonContent));
+
+  await mkdir(`${__dirname}/dist/assets`);
+  await copyFile(`${__dirname}/assets/icon.png`, `${__dirname}/dist/assets/icon.png`);
 }
