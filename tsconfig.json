@@ -1,0 +1,41 @@
+{
+  "compileOnSave": false,
+  "compilerOptions": {
+    "baseUrl": "./",
+    "outDir": "./dist/out-tsc",
+    "sourceMap": true,
+    "declaration": true,
+    "moduleResolution": "Node",
+    "emitDecoratorMetadata": true,
+    "experimentalDecorators": true,
+    "importHelpers": true,
+    "module": "ESNext",
+    "target": "ESNext",
+    "typeRoots": ["node_modules/@types"],
+    "lib": ["ESNext"],
+    "strict": true,
+    "allowJs": false,
+    "checkJs": false,
+    "allowSyntheticDefaultImports": true,
+    "esModuleInterop": true,
+    "downlevelIteration": true,
+    "isolatedModules": false,
+    "locale": "en",
+    "newLine": "lf",
+    "noUnusedLocals": true,
+    "noUnusedParameters": true,
+    "pretty": true,
+    "removeComments": false,
+    "types": ["node"],
+    "importsNotUsedAsValues": "error",
+    "allowUnreachableCode": false
+  },
+  "include": ["./packages/**/src/builder.ts", "./do-build.ts"],
+  "exclude": ["./node_modules/"],
+  "ts-node": {
+    "compilerOptions": {
+      "target": "ESNext",
+      "module": "NodeNext"
+    }
+  }
+}
