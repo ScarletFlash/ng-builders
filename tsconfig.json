@@ -1,41 +1,41 @@
 {
   "compileOnSave": false,
   "compilerOptions": {
+    "allowJs": false,
+    "allowSyntheticDefaultImports": true,
+    "allowUnreachableCode": false,
     "baseUrl": "./",
-    "outDir": "./dist/out-tsc",
-    "sourceMap": true,
+    "checkJs": false,
     "declaration": true,
-    "moduleResolution": "Node",
+    "downlevelIteration": true,
     "emitDecoratorMetadata": true,
+    "esModuleInterop": true,
     "experimentalDecorators": true,
     "importHelpers": true,
-    "module": "ES6",
-    "target": "ES6",
-    "typeRoots": ["node_modules/@types"],
-    "lib": ["ESNext"],
-    "strict": true,
-    "allowJs": false,
-    "checkJs": false,
-    "allowSyntheticDefaultImports": true,
-    "esModuleInterop": true,
-    "downlevelIteration": true,
+    "importsNotUsedAsValues": "error",
     "isolatedModules": false,
+    "lib": ["ESNext", "DOM"],
     "locale": "en",
+    "module": "ES6",
+    "moduleResolution": "Node",
     "newLine": "lf",
     "noUnusedLocals": true,
     "noUnusedParameters": true,
+    "outDir": "./dist/out-tsc",
     "pretty": true,
     "removeComments": false,
-    "types": ["node"],
-    "importsNotUsedAsValues": "error",
-    "allowUnreachableCode": false
+    "sourceMap": true,
+    "strict": true,
+    "target": "ES6",
+    "typeRoots": ["node_modules/@types"],
+    "types": ["node"]
   },
-  "include": ["./packages/**/src/builder.ts", "./do-build.ts"],
   "exclude": ["./node_modules/"],
+  "include": ["./do-build.ts", "./packages/**/src/builder.ts", "./tests/**/src/main.ts"],
   "ts-node": {
     "compilerOptions": {
-      "target": "ESNext",
-      "module": "NodeNext"
+      "module": "CommonJS",
+      "target": "ESNext"
     }
   }
 }

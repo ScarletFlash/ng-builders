@@ -1,0 +1,25 @@
+{
+  "angularCompilerOptions": {
+    "annotateForClosureCompiler": false,
+    "annotationsAs": "decorators",
+    "disableExpressionLowering": false,
+    "disableTypeScriptVersionCheck": false,
+    "enableIvy": true,
+    "enableResourceInlining": false,
+    "fullTemplateTypeCheck": true,
+    "generateCodeForLibraries": false,
+    "strictInjectionParameters": true,
+    "strictMetadataEmit": false,
+    "strictTemplates": true,
+    "trace": false
+  },
+  "compilerOptions": {
+    "lib": ["ESNext", "DOM"],
+    "module": "ESNext",
+    "outDir": "../../out-tsc/app",
+    "target": "ESNext",
+    "types": []
+  },
+  "extends": "./tsconfig.json",
+  "include": ["./tests/**/src/main.ts"]
+}

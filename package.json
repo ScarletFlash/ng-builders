@@ -2,21 +2,34 @@
   "name": "@scarletflash/angular-builders",
   "version": "0.0.0",
   "scripts": {
-    "build": "ts-node ./do-build.ts"
+    "build": "ts-node ./do-build.ts",
+    "test": "npm run test:functional",
+    "test:functional": "ng run circular-dependencies-linter:lint-circular-deps"
   },
   "dependencies": {
     "@angular-devkit/architect": "~0.1300.0",
     "@angular-devkit/core": "^13.0.0"
   },
   "devDependencies": {
+    "@angular-devkit/build-angular": "~13.2.2",
+    "@angular/cli": "^13.0.0",
+    "@angular/common": "^13.0.0",
+    "@angular/compiler": "^13.0.0",
+    "@angular/compiler-cli": "^13.0.0",
+    "@angular/core": "^13.0.0",
+    "@angular/platform-browser": "^13.0.0",
+    "@angular/platform-browser-dynamic": "^13.0.0",
     "@npm/types": "1.0.1",
     "@types/madge": "^5.0.0",
     "@types/node": "^16.0.0",
     "esbuild": "^0.14.0",
     "madge": "^5.0.0",
     "prettier": "latest",
+    "rxjs": "^7.4.0",
     "ts-node": "^10.0.0",
-    "typescript": "^4.5.5",
-    "typescript-json-schema": "^0.50.0"
+    "tslib": "^2.3.0",
+    "typescript": "<4.5.0",
+    "typescript-json-schema": "^0.50.0",
+    "zone.js": "~0.11.0"
   }
 }

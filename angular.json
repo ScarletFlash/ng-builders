@@ -1,0 +1,66 @@
+{
+  "$schema": "./node_modules/@angular/cli/lib/config/schema.json",
+  "cli": {
+    "analytics": false,
+    "cache": {
+      "enabled": true,
+      "environment": "local",
+      "path": "./.cache"
+    },
+    "packageManager": "npm",
+    "warnings": {
+      "versionMismatch": true
+    }
+  },
+  "defaultProject": "circular-dependencies-linter",
+  "newProjectRoot": "./tests/",
+  "projects": {
+    "circular-dependencies-linter": {
+      "architect": {
+        "lint-circular-deps": {
+          "builder": "./dist:circular-dependencies-linter",
+          "options": {
+            "src": "./tests/circular-dependencies-linter/src",
+            "tsConfig": "./tsconfig.test-applications.json"
+          }
+        }
+      },
+      "prefix": "app",
+      "projectType": "application",
+      "root": "./tests/circular-dependencies-linter",
+      "sourceRoot": "./tests/circular-dependencies-linter/src"
+    }
+  },
+  "schematics": {
+    "@schematics/angular:application": {
+      "strict": true
+    },
+    "@schematics/angular:class": {
+      "skipTests": true
+    },
+    "@schematics/angular:component": {
+      "inlineStyle": true,
+      "inlineTemplate": true,
+      "skipTests": true
+    },
+    "@schematics/angular:directive": {
+      "skipTests": true
+    },
+    "@schematics/angular:guard": {
+      "skipTests": true
+    },
+    "@schematics/angular:interceptor": {
+      "skipTests": true
+    },
+    "@schematics/angular:pipe": {
+      "skipTests": true
+    },
+    "@schematics/angular:resolver": {
+      "skipTests": true
+    },
+    "@schematics/angular:service": {
+      "skipTests": true
+    }
+  },
+  "version": 1
+}
