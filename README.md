@@ -76,9 +76,9 @@ You may find it useful to add short alias for this command in `package.json`:
 
 ## Included Builders
 
-| Builder                      |                                                   More Info |
-| :--------------------------- | ----------------------------------------------------------: |
-| Circular Dependencies Linter | [README](./packages/circular-dependencies-linter/README.md) |
-| Formatter                    |                                                   (planned) |
-| Linter                       |                                                   (planned) |
-| Codebase migration tool      |                                                   (planned) |
+| Builder                      |                                                      More Info |
+| :--------------------------- | -------------------------------------------------------------: |
+| Circular Dependencies Linter | [README.md](./packages/circular-dependencies-linter/README.md) |
+| Formatter                    |                                                      (planned) |
+| Linter                       |                                                      (planned) |
+| Codebase migration tool      |                                                      (planned) |
