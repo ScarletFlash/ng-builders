@@ -19,7 +19,6 @@
         "lint-circular-deps": {
           "builder": "./dist:circular-dependencies-linter",
           "options": {
-            "src": "./tests/with-circular-dependencies/src",
             "tsConfig": "./tsconfig.test-applications.json"
           }
         }

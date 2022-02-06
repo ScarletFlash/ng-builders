@@ -22,7 +22,7 @@ Found circular dependencies: 2
 ⮤⭣ app/interface-type/invalid.type.ts
 ```
 
-You may use this Builder in CI: it returns non-zero exit code if there are some circular dependencies.
+You may use this Builder in your CI pipeline: it returns non-zero exit code if there are some circular dependencies.
 
 ## Installation & Usage
 
@@ -41,7 +41,6 @@ Now, update your `angular.json` with the following:
         "lint-circular-deps": { // 👈 CLI command name
           "builder": "angular-builders:circular-dependencies-linter", // 👈 required builder
           "options": {
-            "src": "./src",
             "tsConfig": "./tsconfig.app.json"
           }
         }
