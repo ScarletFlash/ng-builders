@@ -1,8 +1,9 @@
 <p align="center">
-  <img width="128px" src="assets/logo.svg" />
+  <img width="128px" src="https://raw.githubusercontent.com/ScarletFlash/angular-tools/main/assets/logo.svg" />
 </p>
 <p align="center">
-  <img src="actions/workflows/check-sources.yaml/badge.svg" />
+  <img src="https://github.com/ScarletFlash/angular-tools/actions/workflows/check-sources.yaml/badge.svg" />
+
 </p>
 
 # Multi-purpose CLI Builders for Angular
