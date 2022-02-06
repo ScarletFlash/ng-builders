@@ -1,8 +1,8 @@
 <p align="center">
-  <img width="128px" src="https://raw.githubusercontent.com/ScarletFlash/angular-tools/main/assets/logo.svg" />
+  <img width="128px" src="https://raw.githubusercontent.com/ScarletFlash/ng-builders/main/assets/logo.svg" />
 </p>
 <p align="center">
-  <img src="https://github.com/ScarletFlash/angular-tools/actions/workflows/check-sources.yaml/badge.svg" />
+  <img src="https://github.com/ScarletFlash/ng-builders/actions/workflows/check-sources.yaml/badge.svg" />
 
 </p>
 
@@ -19,13 +19,13 @@ Install package via your package manager:
 ##### NPM
 
 ```bash
-npm install angular-tools --save-dev
+npm install ng-builders --save-dev
 ```
 
 ##### Yarn
 
 ```bash
-yarn add angular-tools --dev
+yarn add ng-builders --dev
 ```
 
 Attach required Builder to the project in `angular.json`:
@@ -38,7 +38,7 @@ Attach required Builder to the project in `angular.json`:
     "my-very-best-angular-project": { // 👈 your project name
       "architect": {
         "lint-circular-deps": { // 👈 CLI command name
-          "builder": "angular-tools:circular-dependencies-linter", // 👈 required builder
+          "builder": "ng-builders:circular-dependencies-linter", // 👈 required builder
           "options": {
             ... // 👈 builder-specific options
           }
@@ -72,7 +72,7 @@ You may find it useful to add short alias for this command in `package.json`:
     "lint:circular-deps": "ng run my-very-best-angular-project:lint-circular-deps",
   },
   "devDependencies": {
-    "angular-tools": "latest",
+    "ng-builders": "latest",
   },
   ...
 }

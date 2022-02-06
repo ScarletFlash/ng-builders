@@ -1,5 +1,5 @@
 {
-  "name": "angular-tools",
+  "name": "ng-builders",
   "version": "latest",
   "license": "SEE LICENSE IN LICENSE.md",
   "private": true,
@@ -10,10 +10,10 @@
   },
   "bugs": {
     "email": "scarletflash.dev@gmail.com",
-    "url": "https://github.com/ScarletFlash/angular-tools/issues"
+    "url": "https://github.com/ScarletFlash/ng-builders/issues"
   },
   "description": "Multi-purpose CLI Builders for Angular",
-  "homepage": "https://github.com/ScarletFlash/angular-tools#readme",
+  "homepage": "https://github.com/ScarletFlash/ng-builders#readme",
   "keywords": [
     "Angular",
     "Angular Builders",
@@ -28,7 +28,7 @@
   ],
   "repository": {
     "type": "git",
-    "url": "https://github.com/ScarletFlash/angular-tools.git"
+    "url": "https://github.com/ScarletFlash/ng-builders.git"
   },
   "icon": "./assets/icon.png",
   "scripts": {
