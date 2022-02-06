@@ -4,7 +4,7 @@
   "scripts": {
     "build": "ts-node ./do-build.ts",
     "test": "npm run test:functional",
-    "test:functional": "ng run circular-dependencies-linter:lint-circular-deps"
+    "test:functional": "ng run with-circular-dependencies:lint-circular-deps"
   },
   "dependencies": {
     "@angular-devkit/architect": "~0.1300.0",

@@ -1,15 +1,12 @@
 import type { BuilderContext, BuilderOutput } from '@angular-devkit/architect';
 import type { BuilderOptions } from '../builder-options';
 import type { CircularDependency } from './circular-dependency';
-import { CumulativeReporter } from './cumulative-reporter';
 import { DependencyGraph } from './dependency-graph';
 
 export async function builderProgram(
   { tsConfig, src }: BuilderOptions,
-  { workspaceRoot, target, logger, reportStatus, reportProgress }: BuilderContext
+  { workspaceRoot, target, logger }: BuilderContext
 ): Promise<BuilderOutput> {
-  reportProgress(0, 2, 'Checking configuration.');
-
   if (target === undefined) {
     logger.error('Target should be defined for dependencies validation.');
     return {
@@ -18,8 +15,6 @@ export async function builderProgram(
     };
   }
 
-  reportProgress(1, 2, 'Building dependency graph.');
-
   const graph: DependencyGraph = new DependencyGraph(`${workspaceRoot}/${src}`, {
     fileExtensions: ['js', 'ts'],
     tsConfig: `${workspaceRoot}/${tsConfig}`,
@@ -27,22 +22,19 @@ export async function builderProgram(
 
   const circularDependencies: CircularDependency[] = await graph.getCircularDependencies();
 
-  reportProgress(2, 2, 'Preparing report.');
-
   if (circularDependencies.length === 0) {
-    reportStatus('No circular dependencies found.');
+    logger.info('No circular dependencies found.');
+
     return {
       success: true,
     };
   }
 
-  reportStatus('');
-  const cumulativeReporter: CumulativeReporter = new CumulativeReporter(reportStatus);
-
-  cumulativeReporter.next(`Found ${circularDependencies.length} circular dependencies:`);
+  logger.fatal(`Found circular dependencies: ${circularDependencies.length}`);
   circularDependencies.forEach((circularDependency: CircularDependency, index: number) => {
     const reportItem: string = circularDependency.toReportItem();
-    cumulativeReporter.next('\n' + `● ${index}:` + '\n' + reportItem);
+    const item: string = '\n' + `● ${index + 1}:` + '\n' + reportItem;
+    logger.fatal(item);
   });
 
   return {
