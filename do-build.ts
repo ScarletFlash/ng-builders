@@ -117,4 +117,5 @@ async function generatePackageJson(): Promise<void> {
   await mkdir(`${__dirname}/dist/assets`);
   await copyFile(`${__dirname}/assets/icon.png`, `${__dirname}/dist/assets/icon.png`);
   await copyFile(`${__dirname}/LICENSE.md`, `${__dirname}/dist/LICENSE.md`);
+  await copyFile(`${__dirname}/README.md`, `${__dirname}/dist/README.md`);
 }
