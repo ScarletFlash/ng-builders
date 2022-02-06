@@ -1,0 +1,9 @@
+{
+  "builders": {
+    "circular-dependencies-linter": {
+      "implementation": "./circular-dependencies-linter/builder.js",
+      "schema": "./circular-dependencies-linter/schema.json",
+      "description": "Detects circular dependencies"
+    }
+  }
+}
