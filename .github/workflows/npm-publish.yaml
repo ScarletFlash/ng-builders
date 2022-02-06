@@ -1,6 +1,8 @@
-name: Check Sources
+name: NPM Publish
 
-on: [pull_request]
+on:
+  release:
+    types: [published]
 
 jobs:
   install:
@@ -23,10 +25,10 @@ jobs:
           name: workspace
           path: workspace.tar
 
-  check-build:
+  build:
     needs: install
     runs-on: ubuntu-latest
-    name: Check that build goes successful
+    name: Generate bundle for all provided Angular Builders
     steps:
       - uses: actions/download-artifact@v2
         with:
@@ -34,27 +36,32 @@ jobs:
       - name: 'Unpack prepared workspace files'
         run: tar xf workspace.tar && rm -f workspace.tar
       - run: npm run build
+      - name: 'Pack generated bundle'
+        run: tar cf bundle.tar ./
+      - uses: actions/upload-artifact@v2
+        with:
+          name: bundle
+          path: bundle.tar
 
-  check-formatting:
-    needs: install
+  publish:
+    needs: build
     runs-on: ubuntu-latest
-    name: Check that code style matches defined rules
+    name: Publish bundle to NPM as package
     steps:
       - uses: actions/download-artifact@v2
         with:
-          name: workspace
-      - name: 'Unpack prepared workspace files'
-        run: tar xf workspace.tar && rm -f workspace.tar
-      - run: npm run prettier:check
-
-  check-spelling:
-    needs: install
-    runs-on: ubuntu-latest
-    name: Check that there are no spelling mistakes
-    steps:
-      - uses: actions/download-artifact@v2
-        with:
-          name: workspace
-      - name: 'Unpack prepared workspace files'
-        run: tar xf workspace.tar && rm -f workspace.tar
-      - run: npm run cspell:check
+          name: bundle
+      - name: 'Unpack generated bundle'
+        run: tar xf bundle.tar && rm -f bundle.tar
+      - name: 'Authorize to NPM Registry'
+        run: echo "//registry.npmjs.org/:_authToken=${NODE_AUTH_TOKEN}" >> .npmrc
+        env:
+          NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
+      - name: 'Update package version'
+        run: |
+          cd ./dist
+          npm version "${{ github.ref }}"
+          cd ..
+      - name: 'Publish bundle to NPM'
+        # run: npm publish ./dist
+        run: ls -a ./dist && cat .npmrc && cat ./dist/package.json
