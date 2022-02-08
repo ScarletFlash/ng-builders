@@ -33,7 +33,7 @@ rm(distPath, { force: true, recursive: true })
         external: ['@angular-devkit/architect', '@angular-devkit/core', 'pnpapi', 'rxjs'],
         minify: true,
         platform: 'node',
-        sourcemap: 'external',
+        sourcemap: false,
         target: 'node16',
         format: 'cjs',
         treeShaking: true,
