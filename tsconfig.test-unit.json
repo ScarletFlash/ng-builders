@@ -10,5 +10,5 @@
     "sourceMap": true
   },
   "extends": "./tsconfig.json",
-  "include": ["./packages/**/*.spec.ts"]
+  "include": ["./packages/**/src/**/*.spec.ts"]
 }

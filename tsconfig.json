@@ -30,7 +30,7 @@
     "typeRoots": ["node_modules/@types"],
     "types": ["node"]
   },
-  "exclude": ["./node_modules/"],
+  "exclude": ["./node_modules/", "**/*.spec.ts"],
   "include": ["./do-build.ts", "./packages/**/src/builder.ts", "./e2e/**/src/main.ts"],
   "ts-node": {
     "compilerOptions": {
