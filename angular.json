@@ -12,21 +12,21 @@
       "versionMismatch": true
     }
   },
-  "newProjectRoot": "./tests/",
+  "newProjectRoot": "./e2e/",
   "projects": {
     "with-circular-dependencies": {
       "architect": {
         "lint-circular-deps": {
           "builder": "./dist:circular-dependencies-linter",
           "options": {
-            "tsConfig": "./tsconfig.test-applications.json"
+            "tsConfig": "./tsconfig.test-e2e.json"
           }
         }
       },
       "prefix": "app",
       "projectType": "application",
-      "root": "./tests/with-circular-dependencies",
-      "sourceRoot": "./tests/with-circular-dependencies/src"
+      "root": "./e2e/with-circular-dependencies",
+      "sourceRoot": "./e2e/with-circular-dependencies/src"
     }
   },
   "schematics": {

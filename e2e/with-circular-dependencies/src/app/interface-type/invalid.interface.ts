@@ -1,4 +1,4 @@
-import { InvalidType } from './invalid.type';
+import type { InvalidType } from './invalid.type';
 
 export interface InvalidInterface {
   name: string;

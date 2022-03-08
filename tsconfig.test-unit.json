@@ -1,0 +1,14 @@
+{
+  "compilerOptions": {
+    "emitDecoratorMetadata": false,
+    "allowSyntheticDefaultImports": true,
+    "outDir": "../out-tsc/spec",
+    "types": ["jest", "node"],
+    "lib": ["DOM", "ESNext"],
+    "target": "ESNext",
+    "module": "CommonJS",
+    "sourceMap": true
+  },
+  "extends": "./tsconfig.json",
+  "include": ["./packages/**/src/**/*.spec.ts"]
+}
